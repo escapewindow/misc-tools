@@ -1,0 +1,5 @@
+#!/bin/bash -e
+# Run this to keep osx awake. Uses stay_awake.sh
+
+DIR=$(dirname "$(realpath $0)")
+$DIR/stay_awake.sh "$@" &
