@@ -51,7 +51,7 @@ if [ -f $LOCKFILE ] ; then
         exit 0
     fi
     echo "Killing previous caffeinate run..."
-    killall caffeinate
+    killall caffeinate && true
     cleanup
 fi
 
