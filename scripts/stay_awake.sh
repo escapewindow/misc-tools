@@ -10,12 +10,17 @@ function cleanup {
     rm -f $LOCKFILE
 }
 
+function kill {
+    killall caffeinate && true
+}
+
 function usage {
     echo "Usage: $0 [-h HOURS] [-q] [-f]
 
 Keep OSX awake for H hours. Defaults to 5.
 
     -h: specify a different int hours to stay awake.
+    -k: kill caffeinate and remove the lockfile, then exit
     -q: nuke an existing lockfile and exit.
     -f: force. If caffeinate is already running, kill it and start anew.
 "
@@ -27,6 +32,11 @@ while getopts "h:qf" opt; do
             HOURS=${OPTARG}
             ;;
         q)
+            cleanup
+            exit 0
+            ;;
+        k)
+            kill
             cleanup
             exit 0
             ;;
@@ -51,7 +61,7 @@ if [ -f $LOCKFILE ] ; then
         exit 0
     fi
     echo "Killing previous caffeinate run..."
-    killall caffeinate && true
+    kill
     cleanup
 fi
 
