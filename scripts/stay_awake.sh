@@ -7,7 +7,7 @@
 
 function cleanup {
     # remove the lockfile after caffeinate exits
-    rm $LOCKFILE
+    rm -f $LOCKFILE
 }
 
 function usage {
