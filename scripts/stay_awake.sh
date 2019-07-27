@@ -26,7 +26,7 @@ Keep OSX awake for H hours. Defaults to 5.
 "
 }
 
-while getopts "h:qf" opt; do
+while getopts "h:qfk" opt; do
     case "$opt" in
         h)
             HOURS=${OPTARG}
