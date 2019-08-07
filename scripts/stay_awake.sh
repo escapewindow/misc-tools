@@ -7,7 +7,7 @@
 
 function cleanup {
     # remove the lockfile after caffeinate exits
-    rm -f $LOCKFILE
+    rm -f $LOCKFILE && true
 }
 
 function kill {
@@ -20,8 +20,7 @@ function usage {
 Keep OSX awake for H hours. Defaults to 5.
 
     -h: specify a different int hours to stay awake.
-    -k: kill caffeinate and remove the lockfile, then exit
-    -q: nuke an existing lockfile and exit.
+    -k or -q: kill caffeinate and remove the lockfile, then exit
     -f: force. If caffeinate is already running, kill it and start anew.
 "
 }
@@ -32,6 +31,7 @@ while getopts "h:qfk" opt; do
             HOURS=${OPTARG}
             ;;
         q)
+            kill
             cleanup
             exit 0
             ;;
