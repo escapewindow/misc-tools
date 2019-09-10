@@ -7,11 +7,11 @@
 
 function cleanup {
     # remove the lockfile after caffeinate exits
-    rm -f $LOCKFILE && true
+    rm -f $LOCKFILE || true
 }
 
 function kill {
-    killall caffeinate && true
+    killall caffeinate || true
 }
 
 function usage {
